@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Xid-CP-jIj">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -99,7 +98,7 @@
                                         <rect key="frame" x="48" y="50" width="318" height="45"/>
                                         <color key="textColor" name="BrandBlue"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" enablesReturnKeyAutomatically="YES" textContentType="email"/>
                                     </textField>
                                 </subviews>
                                 <constraints>
@@ -193,7 +192,7 @@
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F21-w0-z4z">
                                         <rect key="frame" x="49" y="51" width="317" height="45"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" enablesReturnKeyAutomatically="YES" textContentType="email"/>
                                     </textField>
                                 </subviews>
                                 <constraints>
@@ -274,25 +273,15 @@
         <scene sceneID="yeH-Ia-3JZ">
             <objects>
                 <viewController id="lwd-AH-u8E" customClass="ChatViewController" customModule="Flash_Chat_iOS13" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="CEy-W8-acN">
+                    <view key="view" contentMode="scaleToFill" id="CEy-W8-acN" customClass="KeyboardDismissingView" customModule="IHKeyboardAvoiding">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="S6L-hg-cne">
                                 <rect key="frame" x="0.0" y="88" width="414" height="714"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReusableCell" id="fAI-uC-s9a">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fAI-uC-s9a" id="X3e-Th-Y6O">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xlo-0G-XA6">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xlo-0G-XA6" customClass="KeyboardDismissingView" customModule="IHKeyboardAvoiding">
                                 <rect key="frame" x="0.0" y="802" width="414" height="60"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Write a message..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UWj-GQ-Vph">
@@ -342,7 +331,7 @@
                             <constraint firstItem="S6L-hg-cne" firstAttribute="top" secondItem="6YX-ca-E8f" secondAttribute="top" id="sQt-L5-8LV"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Q5u-eL-Bgp">
+                    <navigationItem key="navigationItem" id="Q5u-eL-Bgp" customClass="I">
                         <barButtonItem key="rightBarButtonItem" title="Logout" id="aIU-sX-iCa">
                             <connections>
                                 <action selector="logOutPressed:" destination="lwd-AH-u8E" id="72w-qg-ake"/>
@@ -350,6 +339,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="keyboardDismisser" destination="CEy-W8-acN" id="BKQ-dG-VXb"/>
+                        <outlet property="keybordAvoider" destination="xlo-0G-XA6" id="BCL-Rl-dzC"/>
                         <outlet property="messageTextfield" destination="UWj-GQ-Vph" id="INS-Xk-EA9"/>
                         <outlet property="tableView" destination="S6L-hg-cne" id="dTJ-K9-WAe"/>
                     </connections>
@@ -378,7 +369,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="86b-hh-h6j"/>
+        <segue reference="Ame-qU-n30"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="paperplane.fill" catalog="system" width="128" height="118"/>
