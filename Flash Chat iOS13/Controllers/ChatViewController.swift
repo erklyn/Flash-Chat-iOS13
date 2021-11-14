@@ -27,6 +27,8 @@ class ChatViewController: UIViewController  {
         title = K.appName
         //Keyboard Avoiding
         KeyboardAvoiding.avoidingView = keybordAvoider
+        
+        // Wanted to give a little bit of margin 
         KeyboardAvoiding.paddingForCurrentAvoidingView = 10
         
         //Delegates
@@ -51,14 +53,16 @@ class ChatViewController: UIViewController  {
                     if let e = error {
                         print(e)
                     }else {
-                        self.messageTextfield.text = ""
+                        DispatchQueue.main.async {
+                            self.messageTextfield.text = ""
+                        }
                     }
                 }
             }
         }
     }
     
-
+//MARK: - Logging out user
     @IBAction func logOutPressed(_ sender: UIBarButtonItem) {
         let firebaseAuth = Auth.auth()
         do {

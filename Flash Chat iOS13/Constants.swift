@@ -5,7 +5,7 @@
 //  Created by Utku enes Gürsel on 8.11.2021.
 //  Copyright © 2021 Angela Yu. All rights reserved.
 //
-
+import UIKit
 struct K {
     static let cellIdentifier = "ReusableCell"
     static let cellNibName = "MessageCell"
@@ -27,3 +27,5 @@ struct K {
         static let dateField = "date"
     }
 }
+
+
